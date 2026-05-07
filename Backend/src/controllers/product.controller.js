@@ -1,5 +1,5 @@
 import productModel from "../models/product.model.js";
-// import { uploadFile } from "../services/storage.service.js";
+import { uploadFile } from "../services/storage.service.js";
 import { authenticateSeller } from "../middlewares/auth.middleware.js";
 import multer from "multer"
 
@@ -11,9 +11,7 @@ export const upload = multer({
 })
 
 export async function  productController(req, res){
-    // console.log(req.user)
-    // console.log(req.body)
-    // console.log(req.file)
+    
     
     
 
@@ -22,15 +20,19 @@ export async function  productController(req, res){
 
     
    const {title,description, priceAmount, priceCurrency} = req.body
+   
 
-   console.log(req.body)
+   
+
+   
 
   const seller = req.user;
-  console.log(req.file)
+  
+  
   
    
       
-/*
+
    
    const images = await Promise.all(req.files.map(async (file)=>{
     return await uploadFile({
@@ -39,6 +41,7 @@ export async function  productController(req, res){
     })
 
    }))
+   
 
    const product = await productModel.create({
     title,
@@ -59,5 +62,22 @@ export async function  productController(req, res){
    })
 
 
-*/
+
+}
+
+export async function getProductController(req,res){
+    const seller = req.user;
+    const products =  await productModel.find({
+        seller:seller._id
+    })
+
+    
+
+
+    
+    res.status(200).json({
+        message:"Fetched products successfully",
+        success:true,
+        products
+    })
 }

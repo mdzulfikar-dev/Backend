@@ -1,6 +1,6 @@
 import ImageKit from "@imagekit/nodejs"
 import { config } from "../config/config.js"
-
+import { toFile } from "@imagekit/nodejs"
 const client = new ImageKit({
     privateKey:config.IMAGEKIT_PRIVATE_KEY
 })
