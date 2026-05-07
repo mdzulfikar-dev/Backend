@@ -8,8 +8,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
-        // fullName: '',
-        // contactNumber: '',
+        
         email: '',
         password: '',
         isSeller: false
@@ -24,23 +23,13 @@ const Login = () => {
         e.preventDefault();
         await handleLogin({
             email: formData.email,
-            // contact: formData.contactNumber,
+            
             password: formData.password,
             isSeller: formData.isSeller,
-            // fullname: formData.fullName
+            
         });
-        navigate("/");
+        navigate("/createProducts");
     };
-
-    // const inputStyle = {
-    //     color: '#1b1c1a',
-    //     borderBottom: '1px solid #d0c5b5',
-    //     fontFamily: "'Inter', sans-serif"
-    // };
-
-    // const handleFocus = (e) => { e.target.style.borderBottomColor = '#C9A96E'; };
-    // const handleBlur = (e) => { e.target.style.borderBottomColor = '#d0c5b5'; };
-
     return (
         <>
             {/* Google Fonts */}
@@ -124,53 +113,8 @@ const Login = () => {
                         {/* Form */}
                         <form onSubmit={handleSubmit} className="flex flex-col gap-9">
 
-                            {/* Full Name */}
-                            {/* <div className="flex flex-col gap-2">
-                                <label
-                                    htmlFor="reg-fullName"
-                                    className="text-[10px] uppercase tracking-[0.18em] font-medium"
-                                    style={{ color: '#7A6E63' }}
-                                >
-                                    Full Name
-                                </label>
-                                <input
-                                    id="reg-fullName"
-                                    type="text"
-                                    name="fullName"
-                                    value={formData.fullName}
-                                    onChange={handleChange}
-                                    required
-                                    placeholder="e.g. John Doe"
-                                    className="w-full bg-transparent outline-none py-3 text-sm transition-colors duration-300"
-                                    // style={inputStyle}
-                                    // onFocus={handleFocus}
-                                    // onBlur={handleBlur}
-                                />
-                            </div> */}
-
-                            {/* Contact Number */}
-                        {/*   <div className="flex flex-col gap-2">
-                                <label
-                                    htmlFor="reg-contact"
-                                    className="text-[10px] uppercase tracking-[0.18em] font-medium"
-                                    style={{ color: '#7A6E63' }}
-                                >
-                                    Contact Number
-                                </label>
-                                <input
-                                    id="reg-contact"
-                                    type="tel"
-                                    name="contactNumber"
-                                    value={formData.contactNumber}
-                                    onChange={handleChange}
-                                    required
-                                    placeholder="+91 98765 43210"
-                                    className="w-full bg-transparent outline-none py-3 text-sm transition-colors duration-300"
-                                    // style={inputStyle}
-                                    // onFocus={handleFocus}
-                                    // onBlur={handleBlur}
-                                />
-                            </div>*/} 
+                          
+                            
 
                             {/* Email */}
 
@@ -193,9 +137,7 @@ const Login = () => {
                                     required
                                     placeholder="hello@example.com"
                                     className="w-full bg-transparent outline-none py-3 text-sm transition-colors duration-300"
-                                    // style={inputStyle}
-                                    // onFocus={handleFocus}
-                                    // onBlur={handleBlur}
+                                    
                                 />
                             </div>
 
@@ -217,9 +159,7 @@ const Login = () => {
                                     required
                                     placeholder="••••••••"
                                     className="w-full bg-transparent outline-none py-3 text-sm transition-colors duration-300"
-                                    // style={inputStyle}
-                                    // onFocus={handleFocus}
-                                    // onBlur={handleBlur}
+                                    
                                 />
                             </div>
 

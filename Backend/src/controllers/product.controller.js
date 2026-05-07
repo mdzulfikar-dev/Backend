@@ -6,7 +6,7 @@ import multer from "multer"
 export const upload = multer({
     storage:multer.memoryStorage(),
     limits:{
-        fieldSize:5*1024*1024
+        fileSize:5*1024*1024
     }
 })
 
@@ -20,6 +20,11 @@ export async function  productController(req, res){
 
     
    const {title,description, priceAmount, priceCurrency} = req.body
+
+   console.log(req.body)
+   console.log(req.files)
+
+
    
 
    
