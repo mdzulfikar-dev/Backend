@@ -6,6 +6,7 @@ const api = axios.create({
 })
 
 export async function register({email,contact,password,fullname, isSeller}){
+    console.log(email,contact,fullname,isSeller)
 
     const response = await api.post("/register",{
         email,
@@ -14,6 +15,7 @@ export async function register({email,contact,password,fullname, isSeller}){
         fullname,
         isSeller
     })
+    console.log(response.data)
 
     return response.data
 }
@@ -31,5 +33,10 @@ export async function login({email,password}){
         password
 
     })
+    return response.data
+}
+
+export async function getMe(){
+    const response = await api.get("/me")
     return response.data
 }

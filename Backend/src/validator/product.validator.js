@@ -22,7 +22,7 @@ export  const createProductValidator = [
     body("priceAmount")
     .isNumeric().withMessage("Price amount must be numeric"),
 
-    body("priceCurrency")
+    body("amountCurrency")
     .notEmpty().withMessage("Price currency is required"),
 
     validateResult

@@ -6,8 +6,14 @@ import { config } from "../config/config.js";
 import bcrypt from "bcryptjs";
 
 async function sendTokenResponse(user,res, message){
+    
     const token = jwt.sign({
-        id:user._id
+        id:user._id,
+        email:user.email,
+        contact:user.contact,
+            fullname:user.fullname,
+            role:user.role
+        
     }, config.JWT_SECRET_KEY)
     
 
@@ -127,4 +133,24 @@ export const googleCallback = async (req,res)=>{
 
      res.redirect("http://localhost:5173/")
 
+}
+
+
+export const getMe = async (req,res)=>{
+    const user = req.user
+    console.log(user)
+    
+    res.status(200).json({
+        message:"User fetched successfully",
+        success:true,
+        user:{
+            id:user._id,
+            email:user.email,
+            contact:user.contact,
+            fullName:user.fullname,
+            role:user.role
+        }
+    })
+
+   
 }

@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 import { useAuth } from "../hook/useAuth";
 import { useNavigate } from 'react-router';
 // import ContinueWithGoogle from '../components/ContinueWithGoogle';
-
+import { useSelector } from 'react-redux';
 const Login = () => {
     const { handleLogin } = useAuth();
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
-        
+
         email: '',
         password: '',
         isSeller: false
     });
+
+    const user = useSelector(state => state.auth.user)
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -21,14 +23,25 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await handleLogin({
-            email: formData.email,
-            
-            password: formData.password,
-            isSeller: formData.isSeller,
-            
-        });
-        navigate("/createProducts");
+        try {
+            const user = await handleLogin({
+                email: formData.email,
+
+                password: formData.password,
+                isSeller: formData.isSeller,
+
+            });
+
+            if (user.role == "buyer") {
+                navigate("/")
+            } else if (user.role == "seller") {
+                navigate("/seller/dashboard")
+            }
+        }catch(err){
+            console.error("Login failed",error)
+        }
+        
+        
     };
     return (
         <>
@@ -113,8 +126,8 @@ const Login = () => {
                         {/* Form */}
                         <form onSubmit={handleSubmit} className="flex flex-col gap-9">
 
-                          
-                            
+
+
 
                             {/* Email */}
 
@@ -137,7 +150,7 @@ const Login = () => {
                                     required
                                     placeholder="hello@example.com"
                                     className="w-full bg-transparent outline-none py-3 text-sm transition-colors duration-300"
-                                    
+
                                 />
                             </div>
 
@@ -159,7 +172,7 @@ const Login = () => {
                                     required
                                     placeholder="••••••••"
                                     className="w-full bg-transparent outline-none py-3 text-sm transition-colors duration-300"
-                                    
+
                                 />
                             </div>
 

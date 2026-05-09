@@ -19,7 +19,8 @@ export async function  productController(req, res){
 
 
     
-   const {title,description, priceAmount, priceCurrency} = req.body
+//    const {title,description, priceAmount, priceCurrency} = req.body
+   const {title,description, priceAmount, amountCurrency} = req.body
 
    console.log(req.body)
    console.log(req.files)
@@ -53,7 +54,7 @@ export async function  productController(req, res){
     description,
     price:{
         amount:priceAmount,
-        currency:priceCurrency || "INR"
+        currency:amountCurrency || "INR"
     },images,
     seller:seller._id
    })
