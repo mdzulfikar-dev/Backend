@@ -87,3 +87,40 @@ export async function getProductController(req,res){
         products
     })
 }
+
+export async function getAllProducts(req,res){
+    const products = await productModel.find();
+    return res.status(200).json({
+        message:"Products fetched successfully",
+        success:true,
+        products
+    })
+
+}
+
+
+export async function getProductDetails(req,res){
+    
+    const {productId} = req.params;
+    console.log(productId)
+
+    const product = await productModel.findById(productId);
+
+    if(!product){
+        return res.status(200).json({
+            message:"Product not found",
+            success:false
+        })
+    }
+
+    return res.status(200).json({
+        message:"Product details fetched successfully",
+        product
+    })
+}
+    
+    
+
+    
+    
+    
