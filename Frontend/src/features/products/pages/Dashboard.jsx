@@ -3,13 +3,20 @@ import { useProduct } from '../hook/useProduct'
 import { useEffect } from 'react'
 
 import { useSelector } from 'react-redux'
+import { Navigate, useNavigate } from 'react-router'
+import { useParams } from 'react-router'
 
 
 
 const Dashboard = () => {
+  const navigate = useNavigate()
+  
+  
+  
     const {handleGetSellerProduct}= useProduct()
     const SellerProducts = useSelector(state=>state.product.sellerProducts)
     console.log(SellerProducts)
+
     useEffect(()=>{
         handleGetSellerProduct()
     
@@ -18,14 +25,19 @@ const Dashboard = () => {
     
     
   return (
-    <div className='h-screen bg-gray-950 text-black flex gap-1 items-center justify-center flex-wrap'>
+    <div 
+   
+    className='h-screen bg-gray-950 text-black flex gap-1 items-center justify-center flex-wrap'>
       
       {SellerProducts.map((elem,idx)=>{
-        console.log(elem)
+        console.log(elem._id)
         return <div key={idx}
+        
         className='w-70 h-100 bg-white p-5'
         >
-            <div className='h-full '>
+            <div 
+            onClick={()=>(navigate(`/seller/sellerproduct/${elem._id}`))}
+            className='h-full '>
                 <img className='w-full h-60 '
                 //elem.images[idx].url
                 src={elem?.images?.[0]?.url} alt="" />

@@ -4,6 +4,7 @@ import { useProduct } from "../hook/useProduct";
 
 const ProductDetail = () => {
   const { productId } = useParams();
+  
 
   const { handleGetProductById } = useProduct();
 
@@ -63,6 +64,7 @@ const ProductDetail = () => {
             {product.images.map((img, idx) => (
 
               <div
+              
                 key={idx}
                 onMouseEnter={() => setSelectedImage(img.url)}
                 className={`w-24 h-24 rounded-xl overflow-hidden shrink-0 cursor-pointer border-2 transition

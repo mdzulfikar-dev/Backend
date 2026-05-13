@@ -1,6 +1,6 @@
 import {Router} from "express"
 import { authenticateSeller } from "../middlewares/auth.middleware.js";
-import {getAllProducts, getProductController, productController, getProductDetails} from "../controllers/product.controller.js"
+import {getAllProducts, getProductController, productController, getProductDetails, createProductVariant} from "../controllers/product.controller.js"
 import { upload } from "../controllers/product.controller.js";
 import { createProductValidator } from "../validator/product.validator.js";
 
@@ -15,7 +15,7 @@ const router = Router()
 router.post("/",authenticateSeller,upload.array("images",7),createProductValidator,productController)
 
 /**
- * @routes GET /api/products/seller
+ * @routes GET /api/products/seller/getProducts
  * @description Get all the products of the authenticated seller
  * @access Private [Seller only]
  */
@@ -37,6 +37,15 @@ router.get("/getproducts",getAllProducts)
  */
 
 router.get("/detail/:productId",getProductDetails)
+
+
+
+/**
+ * @route POST /api/products/detail/:productId/variants
+ * @description  Add new variant to the product
+ * @access Private(Seller only)
+ */
+router.post("/detail/:productId/variants",authenticateSeller, upload.array("images",7),createProductVariant)
 
 
 

@@ -27,3 +27,23 @@ export async function getProductById(productId){
     const response = await productApiInstance.get(`/detail/${productId}`)
     return response.data
 }
+
+
+export async function createProductVariant(
+    productId,
+    formData
+){
+    try {
+         console.log(productId)
+         console.log([...formData.entries()]);
+        const response = await productApiInstance.post(`/detail/${productId}/variants`, formData)
+        console.log(response)
+        return response.data
+        
+    } catch (error) {
+        
+        console.log(error)
+        throw error
+        
+    }
+}

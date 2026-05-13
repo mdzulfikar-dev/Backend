@@ -38,7 +38,7 @@ const Login = () => {
                 navigate("/seller/dashboard")
             }
         }catch(err){
-            console.error("Login failed",error)
+            console.error("Login failed",err)
         }
         
         
