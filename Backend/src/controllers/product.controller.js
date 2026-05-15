@@ -130,9 +130,11 @@ export async  function createProductVariant(req,res){
         _id:productId,     // the product check id
         seller: req.user._id   // chech which seller send the req for creating variant
     })
+
     if(!product){
         return res.status(404).json({
-            message:"Product not found"
+            message:"Product not found",
+            success:false
         })
        
 
