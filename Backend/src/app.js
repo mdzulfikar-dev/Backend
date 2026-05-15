@@ -7,6 +7,7 @@ import passport   from "passport"
 import {Strategy as GoogleStrategy} from "passport-google-oauth20"
 import cors from "cors"
 import { config } from "./config/config.js"
+import { addToCart } from "./controllers/cart.controller.js"
 const app = express()
 app.use(cookieParser())
 
